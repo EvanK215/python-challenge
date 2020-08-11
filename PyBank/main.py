@@ -3,36 +3,80 @@ import csv
 import os
 
  # Path to collect data from the Resources folder
-Budget = os.path.join('..', 'Resources', 'Budget_data.csv')
+open_file = os.path.join('PyBank', 'Resources', 'budget_data.csv')
+output_file = os.path.join('PyBank','analysis' 'report.txt')
+
+totalMonths = 0 
+totalProfitLoss= 0
+monthlyChange=[]
+monthYrList=[]
+greatestIncrease = 0
+greatestDecrease = 0
+
+
 
 # Read in the CSV file
-with open(Budget, 'r') as csvfile:
+with open(open_file, 'r') as csvfile:
+  
+  # Split the data on commas
+  csvreader = csv.reader(csvfile, delimiter=',')
+  #id first row as header
+  header_row = next(csvreader)
+  row = next(csvreader)
 
-    # Split the data on commas
-    csvreader = csv.reader(csvfile, delimiter=',')
-
-    header = next(csvreader)
-
-# Define the function and have it accept the 'Banking_csv' as its sole parameter
-def results(Budget):
-    # assign values to variables with descriptive names
-    #MonthYr = str(Budget[0])
-    #PL = int(Budget[1])
+  totalProfitLoss= 0
+  priorChange = int(row[1])
    
-  # The total number of months included in the dataset
-    totalMonths =  len(list(csvreader))
-  # The net total amount of "Profit/Losses" over the entire period
+  #loop each row of data 
+  for row in csvreader:
+
+    #running totals month count and profit loss
+    totalMonths = totalMonths + 1 
+    totalProfitLoss =  totalProfitLoss + int(row[1])
+
+    #find month to month change in profits 
+    profitChange = int(row[1]) - priorChange
+    monthlyChange.append(profitChange)
+    monthYrList.append(row[0])
+    priorChange = int(row[1])
+
+    #find greatest monthly increase in profit change
+    if profitChange > greatestIncrease:
+        greatestIncrease = profitChange
+        greatestIncreaseMonthYr = row[0]
+
+    #find Greatest monthly decrease in profit change 
+    if profitChange < greatestDecrease:
+        greatestDecrease = profitChange
+        greatestDecreaseMonthYr = row[0]
+
+# find average Monthly profit change 
+avgProfitChg = sum(monthlyChange) / len(monthlyChange)
+
 
   # The average of the changes in "Profit/Losses" over the entire period
 
-  # The greatest increase in profits (date and amount) over the entire period
+  # The greatest increa
+  # se in profits (date and amount) over the entire period
 
   # The greatest decrease in losses (date and amount) over the entire period
 
-      # Print out the Financial Analysis
+# Print out the Financial Analysis
+print("Financial Analysis")
+print("-----------------------------------------------------------------")
+print(f"Total Months: {str(totalMonths)}")
+print(f"Total Profit/Loss: ${str(totalProfitLoss)}")
+print(f"Average Monthly Profit change: ${avgProfitChg:.2f}")
+print(f"Greatest Profit Increase: {str(greatestIncreaseMonthYr)} (${int(greatestIncrease)})")
+print(f"Greates Profit Decrease: {str(greatestDecreaseMonthYr)} (${int(greatestDecrease)})")
 
-    print (f"Total Months: {str(totalMonths)}")
-    #print(f"WIN PERCENT: {str(win_percent)}")
-    #print(f"LOSS PERCENT: {str(loss_percent)}")
-    #print(f"DRAW PERCENT: {str(draw_percent)}")
-    #print(f"{name} is a {type_of_wrestler}")
+#send Analysis to output file
+with open(output_file, "w") as textfile:
+  textfile =
+  print("Financial Analysis")
+  print("-----------------------------------------------------------------")
+  print(f"Total Months: {str(totalMonths)}")
+  print(f"Total Profit/Loss: ${str(totalProfitLoss)}")
+  print(f"Average Monthly Profit change: ${avgProfitChg:.2f}")
+  print(f"Greatest Profit Increase: {str(greatestIncreaseMonthYr)} (${int(greatestIncrease)})")
+  print(f"Greates Profit Decrease: {str(greatestDecreaseMonthYr)} (${int(greatestDecrease)})")
