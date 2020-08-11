@@ -62,14 +62,14 @@ avgProfitChg = sum(monthlyChange) / len(monthlyChange)
   # The greatest decrease in losses (date and amount) over the entire period
 
 # Print out the Financial Analysis to terminal 
-analysis = {str(
+analysis = (
   print("Financial Analysis"),
   print("-----------------------------------------------------------------"),
   print(f"Total Months: {str(totalMonths)}"),
   print(f"Total Profit/Loss: ${str(totalProfitLoss)}"),
   print(f"Average Monthly Profit change: ${avgProfitChg:.2f}"),
   print(f"Greatest Profit Increase: {str(greatestIncreaseMonthYr)} (${int(greatestIncrease)})"),
-  print(f"Greates Profit Decrease: {str(greatestDecreaseMonthYr)} (${int(greatestDecrease)})"))}
+  print(f"Greates Profit Decrease: {str(greatestDecreaseMonthYr)} (${int(greatestDecrease)})"))
 
 #send Analysis to output file
 f = open(output_file, "w")
