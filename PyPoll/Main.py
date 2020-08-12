@@ -5,8 +5,15 @@ import os
 open_file = os.path.join('Pypoll', 'Resources', 'election_data.csv')
 output_file = os.path.join('Pypoll', 'Resources', 'pollResults.txt')
 
+#Lists and Varibles
 tBallots = 0
-
+voters = []
+counties = []
+candidates = []
+Correy = 0 
+Khan = 0
+Li =0 
+OTooley =0 
 
 # Read in the CSV file
 with open(open_file, 'r') as csvfile:
@@ -15,29 +22,49 @@ with open(open_file, 'r') as csvfile:
     #id first row as header
     header_row = next(csvreader)
     #row = next(csvreader)
-    #Lists
-    voters = []
-    counties = []
-    candidates = []
-    Bamoo = 0
-    Marsh = 0
-    Queen = 0
-    Raffah = 0
-    Trandee = 0
 
     #loop each row of data 
     for row in csvreader:
     #running totals for total ballots received
         tBallots = tBallots + 1
-        #Add contant of the row to the correct list 
-        voter.append(row[0])
-        counties.append(row[1])
-        candidates.append(row[2])
-            # count 
-            if county in counties == "Marsh"
+        #Add candi of the row to the correct list 
 
-
+        Candidate =(row[2])
+            # find the candidate and add that to their vote count 
+        if Candidate == "Correy":
+            Correy += 1
+        elif (row[2]) == "Khan":
+            Khan += 1 
+        elif (row[2]) == "Li":
+            Li += 1
+        else: OTooley += 1
+        #calculate percentages
+        correyPct = "{:.3%}".format (Correy / tBallots)
+        khanPct = "{:.3%}".format (Khan /tBallots)
+        liPct = "{:.3%}".format (Li/tBallots)
+        otooleyPct = "{:.3%}".format (OTooley /tBallots)
+        
+   
+    #print 
+   
+    print ("Election Results")
+    print ("-------------------------") 
+    print ("Total Votes")
     print(tBallots)
+    print ("-------------------------")
+    print("Correy: {str(correyPct)},  ({correy})")
+    #print (f"Correy: {int((Khan)/(tBallots)"% ("(khan)
+    print (Khan)
+    print (Li)
+    print (OTooley)
+
+
+
+                
+
+
+
+  
 
 
 
