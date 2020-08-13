@@ -2,12 +2,12 @@ import csv
 import os
 
  # Path to collect data from the Resources folder
-open_file = os.path.join('Pypoll', 'Resources', 'election_data.csv')
-output_file = os.path.join('Pypoll', 'Resources', 'pollResults.txt')
+open_file = os.path.join('Resources', 'election_data.csv')
+output_file = os.path.join('Analysis', 'pollResults.txt')
 
 #Lists and Varibles
 tBallots = 0
-voters = []
+votes = []
 counties = []
 candidates = []
 Correy = 0 
@@ -38,25 +38,44 @@ with open(open_file, 'r') as csvfile:
         elif (row[2]) == "Li":
             Li += 1
         else: OTooley += 1
-        #calculate percentages
-        correyPct = "{:.3%}".format (Correy / tBallots)
-        khanPct = "{:.3%}".format (Khan /tBallots)
-        liPct = "{:.3%}".format (Li/tBallots)
-        otooleyPct = "{:.3%}".format (OTooley /tBallots)
         
-   
-    #print 
-   
-    print ("Election Results")
-    print ("-------------------------") 
-    print ("Total Votes")
-    print(tBallots)
-    print ("-------------------------")
-    print("Correy: {str(correyPct)},  ({correy})")
-    #print (f"Correy: {int((Khan)/(tBallots)"% ("(khan)
-    print (Khan)
-    print (Li)
-    print (OTooley)
+        
+    #calculate percentages
+    correyPct = "{:.3%}".format (Correy / tBallots)
+    khanPct = "{:.3%}".format (Khan /tBallots)
+    liPct = "{:.3%}".format (Li/tBallots)
+    otooleyPct = "{:.3%}".format (OTooley /tBallots)
+
+#votes = [Khan, Li, Correy, OTooley]
+results = {Khan: "Khan",Li: "Li",Correy: "Correy",OTooley: "OTooley"}
+winner = (results.get(max(results)))
+
+#prints to Terrmial     
+print (f"Election Results")
+print ("-------------------------") 
+print (f"Total Votes")
+print (tBallots)
+print ("-------------------------")
+print (f"Khan: {str(khanPct)}  ({Khan})")
+print (f"Correy: {str(correyPct)}  ({Correy})")
+print (f"Li: {str(liPct)}  ({Li})")
+print (f"O'Tooley: {str(otooleyPct)}  ({OTooley})")
+print ("-------------------------")
+print (f"The Winner is: " + winner)  
+
+#send Analysis to output file
+with open (output_file, 'w') as textfile:
+    textfile.write (f"Election Results\n")
+    textfile.write ("-------------------------\n") 
+    textfile.write (f"Total Votes\n")
+    textfile.write (f"{str(tBallots)}\n")
+    textfile.write ("-------------------------")
+    textfile.write (f"Khan: {str(khanPct)}  ({Khan})\n")
+    textfile.write (f"Correy: {str(correyPct)}  ({Correy})\n")
+    textfile.write (f"Li: {str(liPct)}  ({Li})\n")
+    textfile.write (f"O'Tooley: {str(otooleyPct)}  ({OTooley})\n")
+    textfile.write ("-------------------------\n")
+    textfile.write ("The Winner is: " + (winner))  
 
 
 
