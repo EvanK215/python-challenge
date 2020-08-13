@@ -4,7 +4,6 @@ import os
  # Path to collect data from the Resources folder
 open_file = os.path.join('Resources', 'election_data.csv')
 output_file = os.path.join('Analysis', 'pollResults.txt')
-
 #Lists and Varibles
 tBallots = 0
 votes = []
@@ -29,13 +28,13 @@ with open(open_file, 'r') as csvfile:
         tBallots = tBallots + 1
         #Add candi of the row to the correct list 
 
-        Candidate =(row[2])
+        candidate =(row[2])
             # find the candidate and add that to their vote count 
-        if Candidate == "Correy":
+        if candidate == "Correy":
             Correy += 1
-        elif (row[2]) == "Khan":
+        elif candidate  == "Khan":
             Khan += 1 
-        elif (row[2]) == "Li":
+        elif candidate == "Li":
             Li += 1
         else: OTooley += 1
         
