@@ -34,7 +34,8 @@ Export findings to a  text file stored in [PyBank\analysis\report.txt]
 ## PyPoll
 
 ### Resourcers 
-[PyPoll\Resources\election_data.csv]
+
+[PyPoll\Resources\election_data.csv] 
 the CSV file is a three column election results file with voter/voter county and candidate voted for
 
 ### Application Anwsers  
@@ -50,5 +51,3 @@ create a Python script to calculate each of the following
   * The total number of votes each candidate won
 
   * The winner of the election based on popular vote.
-
-  
